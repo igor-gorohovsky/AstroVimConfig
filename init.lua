@@ -38,9 +38,10 @@ return {
             },
             disabled = { -- disable formatting capabilities for the listed language servers
                 -- disable lua_ls formatting capability if you want to use StyLua to format your lua code
+                "ruff_lsp", "pyright"
                 -- "lua_ls",
             },
-            timeout_ms = 1000 -- default format timeout
+            timeout_ms = 0 -- default format timeout
             -- filter = function(client) -- fully override the default formatting function
             --   return true
             -- end
@@ -48,6 +49,12 @@ return {
         -- enable servers that you already have installed without mason
         servers = {
             -- "pyright"
+        },
+
+        config = {
+            pyright = {
+                -- settings = {python = {analysis = {typeCheckingMode = "off"}}}
+            }
         }
     },
 
