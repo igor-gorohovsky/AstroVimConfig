@@ -17,7 +17,16 @@ return {
         --   function() require("astronvim.utils.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1)) end,
         --   desc = "Previous buffer",
         -- },
-
+        ["<leader>ff"] = {
+            function()
+                require('telescope').extensions.smart_open.smart_open {
+                    cwd_only = true,
+                    filename_first = true
+                }
+            end,
+            silent = true,
+            noremap = true
+        },
         -- mappings seen under group name "Buffer"
         ["<leader>bD"] = {
             function()
