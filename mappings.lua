@@ -3,6 +3,8 @@
 -- Please use this mappings table to set keyboard mapping since this is the
 -- lower level configuration and more robust one. (which-key will
 -- automatically pick-up stored data by this setting.)
+local hop = require('hop')
+local directions = require('hop.hint').HintDirection
 return {
     -- first key is the mode
     n = {
@@ -17,6 +19,7 @@ return {
         --   function() require("astronvim.utils.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1)) end,
         --   desc = "Previous buffer",
         -- },
+        -- Use smart open plugin to sort files by recently used
         ["<leader>ff"] = {
             function()
                 require('telescope').extensions.smart_open.smart_open {
@@ -27,6 +30,39 @@ return {
             silent = true,
             noremap = true
         },
+
+        -- hop.nvim mappings
+        f = {
+            function()
+                hop.hint_char1({direction = directions.AFTER_CURSOR})
+            end,
+            remap = true
+        },
+        F = {
+            function()
+                hop.hint_char1({direction = directions.BEFORE_CURSOR})
+            end,
+            remap = true
+        },
+        t = {
+            function()
+                hop.hint_char1({
+                    direction = directions.AFTER_CURSOR,
+                    hint_offset = -1
+                })
+            end,
+            remap = true
+        },
+        T = {
+            function()
+                hop.hint_char1({
+                    direction = directions.BEFORE_CURSOR,
+                    hint_offset = 1
+                })
+            end,
+            remap = true
+        },
+
         -- mappings seen under group name "Buffer"
         ["<leader>bD"] = {
             function()

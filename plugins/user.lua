@@ -21,5 +21,10 @@ return {
             -- Optional.  If installed, native fzy will be used when match_algorithm is fzy
             {"nvim-telescope/telescope-fzy-native.nvim"}
         }
+    },
+    {
+        'smoka7/hop.nvim',
+        version = "*",
+        opts = {keys = 'etovxqpdygfblzhckisuran'}
     }
 }
