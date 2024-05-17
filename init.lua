@@ -41,7 +41,7 @@ return {
                 "ruff_lsp", "pyright"
                 -- "lua_ls",
             },
-            timeout_ms = 0 -- default format timeout
+            timeout_ms = 1000 -- default format timeout
             -- filter = function(client) -- fully override the default formatting function
             --   return true
             -- end
@@ -77,6 +77,15 @@ return {
     -- anything that doesn't fit in the normal config locations above can go here
     polish = function()
         vim.o.autoread = true -- automatically reload files changed outside of vim
+        vim.api.nvim_create_autocmd('FileType', {
+            pattern = {'fc', 'func'},
+            callback = function()
+                vim.lsp.start({
+                    name = 'func-extracted-ls',
+                    cmd = {'func-extracted-ls', '--stdio'}
+                })
+            end
+        })
         -- Set up custom filetypes
         -- vim.filetype.add {
         --   extension = {
